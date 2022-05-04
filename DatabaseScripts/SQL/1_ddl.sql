@@ -45,19 +45,3 @@ CREATE TABLE "api_entranceevent"
     "insert_time"               timestamp with time zone NOT NULL,
     "fk_measurement_station_id" integer                  NOT NULL
 );
---
--- Create model ConnectionHistory
---
-CREATE TABLE "api_connectionhistory"
-(
-    "id"                        serial                   NOT NULL PRIMARY KEY,
-    "time"                      timestamp with time zone NOT NULL,
-    "insert_time"               timestamp with time zone NOT NULL,
-    "ip_address"                inet                     NOT NULL,
-    "bluetooth_connected"       boolean                  NULL,
-    "wlan_signal_strength"      integer                  NOT NULL,
-    "ping_backend"              integer                  NOT NULL,
-    "ping_broker"               integer                  NOT NULL,
-    "ping_grafana"              integer                  NOT NULL,
-    "fk_measurement_station_id" integer                  NOT NULL
-);
