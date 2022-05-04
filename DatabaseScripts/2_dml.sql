@@ -5,7 +5,7 @@ INSERT INTO public.api_classroom
  description,
  room_number,
  updated_on)
-VALUES (1,
+VALUES (0,
         '1.010',
         'Lichthof',
         '1.010',

@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+  dbpostgres:
+      image: 'postgres:latest'
+      container_name: 'dbpostgres-ddi'
+      ports:
+        - 5432:5433
+      expose:
+        - '5433'
+      environment:
+        POSTGRES_USER: root 
+        POSTGRES_PASSWORD: eVEdTBmhxODvYbBoCAlK
+        POSTGRES_DB: smartclassroom_ddl
+      volumes:
+          - "./DatabaseScripts/SQL/1_ddl.sql:/docker-entrypoint-initdb.d/002_ddl.sql"
+          - "./DatabaseScripts/2_dml.sql:/docker-entrypoint-initdb.d/003_dml.sql"
+  dbtimescale:
+      image: 'timescale/timescaledb:latest-pg14'
+      container_name: 'dbtimescale-ddi'
+      ports:
+        - 5433:5434
+      expose:
+        - '5434'
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: eVEdTBmhxODvYbBoCAlK
+        POSTGRES_DB: smartclassroom_ddl
+      volumes:
+          - "./DatabaseScripts/NOSQL/1_ddl.sql:/docker-entrypoint-initdb.d/002_ddl.sql"
+          - "./DatabaseScripts/2_dml.sql:/docker-entrypoint-initdb.d/003_dml.sql"

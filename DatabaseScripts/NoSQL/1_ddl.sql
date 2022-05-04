@@ -1,12 +1,13 @@
 --
 -- Create database
 --
-CREATE DATABASE smartclassroom_ddl;
+-- CREATE DATABASE smartclassroom_ddl;
 
 --
 -- DDL - Make sure you are in correct schema before executing!
 --
-BEGIN;
+-- \c smartclassroom_ddl;
+-- BEGIN;
 --
 -- Create model Classroom
 --
@@ -43,6 +44,7 @@ CREATE TABLE "api_measurement"
     "light"                     numeric(19, 10)          NULL,
     "fk_measurement_station_id" integer                  NOT NULL
 );
+
 DO
 $do$
     BEGIN
@@ -112,9 +114,13 @@ ALTER TABLE "api_connectionhistory"
     DROP CONSTRAINT "api_connectionhistory_pkey";
 SELECT create_hypertable('api_connectionhistory', 'time', chunk_time_interval => interval '1 day',
                          migrate_data => false);
+
 ALTER TABLE "api_measurementstation"
-    ADD CONSTRAINT "api_measurementstati_fk_classroom_id_2349e0de_fk_api_class" FOREIGN KEY ("fk_classroom_id") REFERENCES "api_classroom" ("id") DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT "api_measurementstati_fk_classroom_id_2349e0de_fk_api_class" 
+    FOREIGN KEY ("fk_classroom_id") 
+    REFERENCES "api_classroom" ("id") DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX "api_measurementstation_fk_classroom_id_2349e0de" ON "api_measurementstation" ("fk_classroom_id");
+
 ALTER TABLE "api_measurement"
     ADD CONSTRAINT "api_measurement_fk_measurement_stati_75ae5add_fk_api_measu" FOREIGN KEY ("fk_measurement_station_id") REFERENCES "api_measurementstation" ("id") DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX "api_measurement_fk_measurement_station_id_75ae5add" ON "api_measurement" ("fk_measurement_station_id");
