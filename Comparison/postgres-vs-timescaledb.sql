@@ -73,6 +73,7 @@ GROUP BY five_min
 ORDER BY five_min DESC
 LIMIT 100;
 
+-- ### Histogram ###
 -- histogram - get temperature values in 8 bins between 15°C and 35°C, which makes a bin range of 2.5°C
 SELECT ms.name,
        COUNT(*),
@@ -81,3 +82,12 @@ FROM smartclassroom_dev.public.api_measurement m
          INNER JOIN smartclassroom_dev.public.api_measurementstation ms ON m.fk_measurement_station_id = ms.id
 WHERE time > NOW() - INTERVAL '14 days'
 GROUP BY ms.name;
+
+-- ### Time Weighted Average ###
+-- how do we get a representative average when we’re working with irregularly spaced data points?
+-- https://www.timescale.com/blog/what-time-weighted-averages-are-and-why-you-should-care/
+SELECT freezer_id, 
+	avg(temperature), 
+	average(time_weight('Linear', ts, temperature)) as time_weighted_average 
+FROM freezer_temps
+GROUP BY freezer_id;
