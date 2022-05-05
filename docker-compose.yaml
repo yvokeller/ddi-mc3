@@ -15,7 +15,7 @@ services:
           - "./DatabaseScripts/SQL/1_ddl.sql:/docker-entrypoint-initdb.d/002_ddl.sql"
           - "./DatabaseScripts/2_dml.sql:/docker-entrypoint-initdb.d/003_dml.sql"
   dbtimescale:
-      image: 'timescale/timescaledb:latest-pg14'
+      image: 'timescale/timescaledb-ha:pg14-latest'
       container_name: 'dbtimescale-ddi'
       ports:
         - 5434:5432
