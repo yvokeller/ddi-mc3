@@ -4,9 +4,9 @@ services:
       image: 'postgres:latest'
       container_name: 'dbpostgres-ddi'
       ports:
-        - 5432:5433
+        - 5433:5432
       expose:
-        - '5433'
+        - '5432'
       environment:
         POSTGRES_USER: root 
         POSTGRES_PASSWORD: eVEdTBmhxODvYbBoCAlK
@@ -18,9 +18,9 @@ services:
       image: 'timescale/timescaledb:latest-pg14'
       container_name: 'dbtimescale-ddi'
       ports:
-        - 5433:5434
+        - 5434:5432
       expose:
-        - '5434'
+        - '5432'
       environment:
         POSTGRES_USER: root
         POSTGRES_PASSWORD: eVEdTBmhxODvYbBoCAlK
