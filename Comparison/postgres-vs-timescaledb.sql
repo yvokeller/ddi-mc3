@@ -30,6 +30,7 @@ FROM (
 WHERE diff IS NULL
    OR diff != 0;
 
+-- ### Time Ordering ###
 -- @ PostgreSQL & TimescaleDB
 -- time ordering --> should make a big difference between base Postgres and TimescaleDB
 SELECT date_trunc('minute', time) AS minute, max(temperature)
@@ -53,16 +54,16 @@ from generate_series(0, (24*60), 5) n
 
 with five_min_intervals as (
   select 
-    (select min(measured_at)::date from measurements) + ( n    || ' minutes')::interval start_time,
-    (select min(measured_at)::date from measurements) + ((n+5) || ' minutes')::interval end_time
+    (select min(time)::date from api_measurement) + ( n    || ' minutes')::interval start_time,
+    (select min(time)::date from api_measurement) + ((n+5) || ' minutes')::interval end_time
   from generate_series(0, (24*60), 5) n
 )
-select f.start_time, f.end_time, avg(m.val) avg_val 
-from measurements m
+select f.start_time, f.end_time, sum(m.temperature) avg_val
+from api_measurement m
 right join five_min_intervals f 
-        on m.measured_at >= f.start_time and m.measured_at < f.end_time
+        on m.time >= f.start_time and m.time < f.end_time
 group by f.start_time, f.end_time
-order by f.start_time
+order by f.start_time;
 
 -- @ TimescaleDB
 -- get average temperature over a time buckets of 5 minutes
