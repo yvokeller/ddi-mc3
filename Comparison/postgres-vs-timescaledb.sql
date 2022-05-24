@@ -48,7 +48,7 @@ ORDER BY minute ASC;
 select 
   (select min(measured_at)::date from measurements) + ( n    || ' minutes')::interval start_time,
   (select min(measured_at)::date from measurements) + ((n+5) || ' minutes')::interval end_time
-from generate_series(0, (24*60), 5) n
+from generate_series(0, (24*60), 5) n;
 
  -- Wrap that statement in a common table expression, and you can join and group on it as if it were a base table.
 
