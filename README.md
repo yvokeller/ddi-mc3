@@ -2,6 +2,7 @@
  Datenbankdesign und Implementierung - SQL vs NoSQL
 
 ## Structure
+```
 |   Bericht.url                             # URL to the Report
 |   docker-compose.yaml                     # Docker Compose Configuration File
 +---Comparison
@@ -30,6 +31,10 @@
 |   \---UML
 |           UML_RelModel_DDI_LE2.drawio
 |           UML_RelModel_DDI_LE2.png        # UML Model of Datastructure
+```
+
+
+
 
 ## Docker: TimescaleDB & SQL
 ### Prerequisites for Docker
@@ -50,10 +55,15 @@ To start the docker containers:
 - Pw=eVEdTBmhxODvYbBoCAlK
 
 ### Connect to the Docker Containers
-Connect to the Postgres Container  with psql:
+
+Connect to the Postgres Container with psql:
+```
 `docker exec -it dbpostgres-ddi psql postgres://root:eVEdTBmhxODvYbBoCAlK@dbpostgres:5432/smartclassroom_ddl`
+```
 or Timescale Container with psql:
+```
 `docker exec -it dbtimescale-ddi psql postgres://root:eVEdTBmhxODvYbBoCAlK@dbtimescale:5432/smartclassroom_ddl`
+```
 or with a Management Software:
 - Datagrip
 - Pgadmin
