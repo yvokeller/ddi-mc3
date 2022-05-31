@@ -50,7 +50,8 @@ To start the docker containers:
 
 ### SQL Connection Information from Docker 
 - Server=localhost
-- Port=5432
+- PostgreSQLPort=5433
+- TimeScaleDBPort=5434
 - User=root
 - Pw=eVEdTBmhxODvYbBoCAlK
 
