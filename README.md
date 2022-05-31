@@ -45,8 +45,8 @@ If you don't want to use docker, all the SQL Files are described in the Structur
 
 ### Starting the Docker Containers
 To start the docker containers:
-- cd into the main repository directory
-- execute "docker-compose up" in a terminal
+- `cd` into the main repository directory
+- execute `docker-compose up` in a terminal
 
 ### SQL Connection Information from Docker 
 - Server=localhost
@@ -58,11 +58,11 @@ To start the docker containers:
 
 Connect to the Postgres Container with psql:
 ```
-`docker exec -it dbpostgres-ddi psql postgres://root:eVEdTBmhxODvYbBoCAlK@dbpostgres:5432/smartclassroom_ddl`
+docker exec -it dbpostgres-ddi psql postgres://root:eVEdTBmhxODvYbBoCAlK@dbpostgres:5432/smartclassroom_ddl
 ```
 or Timescale Container with psql:
 ```
-`docker exec -it dbtimescale-ddi psql postgres://root:eVEdTBmhxODvYbBoCAlK@dbtimescale:5432/smartclassroom_ddl`
+docker exec -it dbtimescale-ddi psql postgres://root:eVEdTBmhxODvYbBoCAlK@dbtimescale:5432/smartclassroom_ddl
 ```
 or with a Management Software:
 - Datagrip
