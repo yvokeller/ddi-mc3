@@ -1,4 +1,4 @@
-# ddi-mc3
+# Implementing Databases: SQL vs. NoSQL
  Datenbankdesign und Implementierung - SQL vs NoSQL
 
 ## Structure
